@@ -5,7 +5,7 @@
  *  Author: Fatima
  */ 
 
-#include "PWM1.h"
+#include "PWM0.h"
 #include <avr/io.h>
 #include <stdint.h>
 
