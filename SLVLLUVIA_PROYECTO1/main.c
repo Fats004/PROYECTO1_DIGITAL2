@@ -1,6 +1,6 @@
 //*******************************************************************************************************************************************
 // Universidad del Valle de Guatemala
-// IE2023 Programación de Microcontroladores
+// IE2023 ProgramaciÃ³n de Microcontroladores
 // main.c
 // Proyecto: Prelab4
 // Hardware: ATMEGA328P
@@ -19,7 +19,7 @@
 #include <util/delay.h>
 #include "I2C/I2C.h"
 #include "ADC/ADC.h"
-#include "PWM1/PWM1.h"
+#include "PWM0/PWM0.h"
 
 //*************************************************************************************************
 // VARIABLES GLOBALES
@@ -36,7 +36,7 @@ void textUART(char *texto);
 // MAIN
 //*************************************************************************************************
 int main(void) {
-    // Inicializar UART para depuración
+    // Inicializar UART para depuraciÃ³n
 	
 	CLKPR |= (1 << CLKPCE);
 	CLKPR |= (1 << CLKPS0);	
@@ -61,14 +61,14 @@ int main(void) {
         ADCSRA |= (1 << ADSC);
 
         if (buffer == 'S') {
-           textUART("Comando recibido: S -> Moviendo servo a 90°\r\n");
-           updateDutyA0(127/6);  // 90° (1.5 ms)
+           textUART("Comando recibido: S -> Moviendo servo a 90Â°\r\n");
+           updateDutyA0(127/6);  // 90Â° (1.5 ms)
             _delay_ms(10);
             buffer = 0;
         }
         else if (buffer == 's') { 
-            textUART("Comando recibido: s -> Moviendo servo a 0°\r\n");
-            updateDutyA0(50/6);  // 0° (1 ms)
+            textUART("Comando recibido: s -> Moviendo servo a 0Â°\r\n");
+            updateDutyA0(50/6);  // 0Â° (1 ms)
             _delay_ms(10);
             buffer = 0;
         }
@@ -88,7 +88,7 @@ ISR(TWI_vect) {
     switch (estado) {
         case 0x60:
         case 0x70:
-            textUART("I2C: Dirección propia recibida\r\n");
+            textUART("I2C: DirecciÃ³n propia recibida\r\n");
             TWCR = (1 << TWEN) | (1 << TWIE) | (1 << TWINT) | (1 << TWEA);
             break;
         case 0x80:
